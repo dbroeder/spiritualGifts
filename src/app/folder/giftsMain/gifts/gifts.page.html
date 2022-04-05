@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Gifts Quiz</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngFor="let question of questionList">
+    <ion-item>
+      <ion-grid>
+        <ion-row>{{question.question}}</ion-row>
+        <ion-row>
+          <ion-col> 
+            <ion-range min="0" max="3" color="secondary" step="1" snaps="true" [(ngModel)]="question.score">
+              <ion-label slot="start">Never</ion-label>
+              <ion-label slot="end">Often</ion-label>
+            </ion-range>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  
+  <ion-item >
+    <ion-button expand="block" (click)="submit()" >Submit</ion-button>
+  </ion-item>
+  
+
+</ion-content>
