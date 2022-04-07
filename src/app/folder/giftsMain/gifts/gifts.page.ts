@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GiftsService } from 'src/service/gifts.service';
 
 @Component({
   selector: 'app-gifts',
@@ -78,10 +80,11 @@ export class GiftsPage implements OnInit {
     
   ]
 
-  gifts=[new SumResult("Wisdom"),new SumResult("Teaching"),new SumResult("Shepherding"),new SumResult("Prophecy"),new SumResult("Mercy"),new SumResult("Leadership"),new SumResult("Knowledge"),new SumResult("Intercession"),new SumResult("Hospitality"),new SumResult("Helps"),new SumResult("Giving"),new SumResult("Faith"),new SumResult("Evangelism"),new SumResult("Encouragement"),new SumResult("Discernment"),new SumResult("Administration")]
+  
   
 
-  constructor() { }
+  constructor(private giftsProv:GiftsService, private router: Router) { 
+  }
 
   ngOnInit() {
   }
@@ -89,44 +92,60 @@ export class GiftsPage implements OnInit {
   submit(){
     this.questionList.forEach(q=>{
       if(q.category=="Wisdom"){
-        this.gifts[0].sumScore+=(q.score)
+        this.giftsProv.indySum(0,Number(q.score));
+        
       }else if(q.category=="Teaching"){
-        this.gifts[1].sumScore+=(q.score)
+        this.giftsProv.indySum(1,Number(q.score));
+        
       }else if(q.category=="Shepherding"){
-        this.gifts[2].sumScore+=(q.score)
+        this.giftsProv.indySum(2,Number(q.score));
+        
       }else if(q.category=="Prophecy"){
-        this.gifts[3].sumScore+=(q.score)
+        this.giftsProv.indySum(3,Number(q.score));
+        
       }else if(q.category=="Mercy"){
-        this.gifts[4].sumScore+=(q.score)
+        this.giftsProv.indySum(4,Number(q.score));
+        
       }else if(q.category=="Leadership"){
-        this.gifts[5].sumScore+=(q.score)
+        this.giftsProv.indySum(5,Number(q.score));
+        
       }else if(q.category=="Knowledge"){
-        this.gifts[6].sumScore+=(q.score)
+        this.giftsProv.indySum(6,Number(q.score));
+        
       }else if(q.category=="Intercession"){
-        this.gifts[7].sumScore+=(q.score)
+        this.giftsProv.indySum(7,Number(q.score));
+        
       }else if(q.category=="Hospitality"){
-        this.gifts[8].sumScore+=(q.score)
+        this.giftsProv.indySum(8,Number(q.score));
+       
       }else if(q.category=="Helps"){
-        this.gifts[9].sumScore+=(q.score)
+        this.giftsProv.indySum(9,Number(q.score));
+        
       }else if(q.category=="Giving"){
-        this.gifts[10].sumScore+=(q.score)
+        this.giftsProv.indySum(10,Number(q.score));
+        
       }else if(q.category=="Faith"){
-        this.gifts[11].sumScore+=(q.score)
+        this.giftsProv.indySum(11,Number(q.score));
+        
       }else if(q.category=="Evangelism"){
-        this.gifts[12].sumScore+=(q.score)
+        this.giftsProv.indySum(12,Number(q.score));
+        
       }else if(q.category=="Encouragement"){
-        this.gifts[13].sumScore+=(q.score)
+        this.giftsProv.indySum(13,Number(q.score));
+        
       }else if(q.category=="Discernment"){
-        this.gifts[14].sumScore+=(q.score)
+        this.giftsProv.indySum(14,Number(q.score));
+        
       }else if(q.category=="Administration"){
-        this.gifts[15].sumScore+=(q.score)
+        this.giftsProv.indySum(15,Number(q.score));
+        
       }
     })
 
-    this.gifts.sort((a,b)=>{
-      return b.sumScore-a.sumScore;
-    })
-    console.log(this.gifts)
+    this.giftsProv.rankGifts();
+    console.log(this.giftsProv.getGifts())
+
+    this.router.navigate(['/results'])
     
   }
 
@@ -134,14 +153,6 @@ export class GiftsPage implements OnInit {
 
 }
 
-class SumResult{
-  category:string;
-  sumScore=0;
-  rank:number;
-  constructor(cat:string){
-    this.category=cat;
-  }
-}
 
 class Question{
   constructor(question:string,cat:string){

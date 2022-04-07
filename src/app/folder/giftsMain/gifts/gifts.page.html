@@ -13,14 +13,46 @@
     <ion-item>
       <ion-grid>
         <ion-row>{{question.question}}</ion-row>
-        <ion-row>
+        <!--
+          <ion-row>
           <ion-col> 
+            
             <ion-range min="0" max="3" color="secondary" step="1" snaps="true" [(ngModel)]="question.score">
               <ion-label slot="start">Never</ion-label>
               <ion-label slot="end">Often</ion-label>
             </ion-range>
-        </ion-col>
+          </ion-col>
         </ion-row>
+          -->
+          
+        <ion-radio-group [(ngModel)]="question.score" type="number">
+          <ion-row>
+          
+          
+            <ion-col>
+              <ion-label>Never</ion-label>
+              <ion-radio value="0" type="number"></ion-radio>
+            </ion-col>
+            
+            <ion-col>
+              <ion-label>Seldom</ion-label>
+              <ion-radio value="1" type="number"></ion-radio>
+            </ion-col>
+            
+            <ion-col>
+              <ion-label>Sometimes</ion-label>
+              <ion-radio value="2" type="number"></ion-radio>
+            </ion-col>
+            
+            <ion-col>
+              <ion-label>Often</ion-label>
+              <ion-radio value="3" type="number"></ion-radio>
+            </ion-col>
+            
+          </ion-row>
+        </ion-radio-group>
+      
+        
       </ion-grid>
     </ion-item>
   </ion-list>

@@ -9,4 +9,19 @@
 
 <ion-content>
 
+  <ion-list *ngFor="let gift of gifts">
+    <ion-item *ngIf="gift.sumScore > 3 ">
+      <h4>{{gift.rank}}: {{gift.category}}</h4><br>
+      <h3 slot="end">Score: {{gift.sumScore}}</h3>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-button (click)="save()">Save Results</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="send()">Send Results</ion-button>
+  </ion-item>
+
 </ion-content>

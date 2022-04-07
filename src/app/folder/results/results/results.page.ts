@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GiftsService } from 'src/service/gifts.service';
 
 @Component({
   selector: 'app-results',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
-
-  constructor() { }
+  gifts
+  constructor(private giftsProv:GiftsService,private router: Router) {
+    this.gifts=giftsProv.getGifts();
+   }
 
   ngOnInit() {
+  }
+
+  save(){
+
+  }
+
+  send(){
+    this.router.navigate(['/send-email'])
   }
 
 }

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FolderPage } from './folder.page';
-
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +17,10 @@ const routes: Routes = [
   {
     path: 'saved-results',
     loadChildren: () => import('./savedResults/saved-results/saved-results.module').then( m => m.SavedResultsPageModule)
+  },
+  {
+    path: 'send-email',
+    loadChildren: () => import('./sendEmail/send-email/send-email.module').then( m => m.SendEmailPageModule)
   }
 ];
 
